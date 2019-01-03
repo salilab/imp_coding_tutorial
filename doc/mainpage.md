@@ -19,11 +19,11 @@ more details.
 
 First, change into the top-level directory in the IMP source code. You
 will see a `modules` directory that contains a subdirectory for each IMP
-module. To add a new module called '`foo`', use the `tools/make_module.py`
+module. To add a new module called '`foo`', use the `tools/make-module.py`
 script as follows (the `$` character here denotes the command prompt):
 
 \code{.sh}
-$ tools/make_module.py foo
+$ tools/make-module.py foo
 \endcode
 
 This will make a new subdirectory `modules/foo`; let's take a look at its
