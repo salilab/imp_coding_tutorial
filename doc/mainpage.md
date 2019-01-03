@@ -53,8 +53,9 @@ See the [naming conventions section in the manual](@ref conventions_names)
 for more details.
 
 We do this by creating a file `MyRestraint.h` in the `modules/foo/include/`
-subdirectory. We'll look at each section of this file in turn. The
-first part of the file looks like
+subdirectory. We'll look at each section of this file in turn
+(the whole file is also available [at GitHub](https://github.com/salilab/imp_coding_tutorial/tree/master/modules/foo/include/MyRestraint.h)).
+The first part of the file looks like
 
 \code{.cpp}
 #ifndef IMPFOO_MY_RESTRAINT_H
@@ -187,6 +188,7 @@ IMPFOO_END_NAMESPACE
 \endcode
 
 As before, we need to close the namespace.
+(For reference, the whole file is also available [at GitHub](https://github.com/salilab/imp_coding_tutorial/tree/master/modules/foo/src/MyRestraint.cpp)).
 
 # pyext directory (Python interface) {#pyext}
 
@@ -216,6 +218,8 @@ line:
 
 With the SWIG interface complete, we will be able to use our class from
 Python as `IMP.foo.MyRestraint`.
+
+(For reference, the whole file is also available [at GitHub](https://github.com/salilab/imp_coding_tutorial/tree/master/modules/foo/pyext/swig.i-in)).
 
 # Documentation {#documentation}
 
@@ -295,6 +299,8 @@ This simply runs all the tests in this file if the script is run directly
 from the command line with
 `python test_restraint.py`.
 
+(For reference, the whole file is also available [at GitHub](https://github.com/salilab/imp_coding_tutorial/tree/master/modules/foo/test/test_restraint.py)).
+
 # Dependencies {#depends}
 
 Finally we need to tell the %IMP build system which other modules and external
@@ -313,6 +319,8 @@ as requirements for this module.
 `required_dependencies` and `optional_dependencies` can also be used to make
 use of 3rd party libraries. See [the IMP manual](@ref extdepends) for more
 information.
+
+(For reference, the whole file is also available [at GitHub](https://github.com/salilab/imp_coding_tutorial/tree/master/modules/foo/dependencies.py)).
 
 # Source control {#sourcecontrol}
 
