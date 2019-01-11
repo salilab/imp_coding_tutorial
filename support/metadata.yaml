@@ -1,1 +1,3 @@
 title: Introduction to writing IMP code
+description: >
+    This covers creating a new IMP module, and writing a new restraint in C++.
