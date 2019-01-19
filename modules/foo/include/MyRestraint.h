@@ -13,7 +13,7 @@ class IMPFOOEXPORT MyRestraint : public Restraint {
 public:
   MyRestraint(Model *m, ParticleIndex p, double k);
   void do_add_score_and_derivatives(ScoreAccumulator sa) const IMP_OVERRIDE;
-  ModelObjectsTemp do_get_inputs() const;
+  ModelObjectsTemp do_get_inputs() const IMP_OVERRIDE;
   IMP_OBJECT_METHODS(MyRestraint);
 };
 
