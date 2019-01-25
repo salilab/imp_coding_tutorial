@@ -36,7 +36,7 @@ source ${CONDA_PREFIX}/etc/conda/activate.d/activate-gxx_linux-64.sh
 
 # IMP tests use sys.argv[0] to determine their location, which won't work if
 # we use nosetests, so add a workaround
-ln -sf $(which nosetests) ${cur_dir}/test/
+ln -sf $(which nosetests) ${cur_dir}/modules/foo/test/
 
 cd ${cur_dir}
 
