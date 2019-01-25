@@ -1,0 +1,21 @@
+sudo: false
+language: python
+dist: xenial
+python:
+  - 2.7
+  - 3.7
+cache:
+  pip: true
+install:
+  - source support/setup_travis.sh $HOME/miniconda $TRAVIS_PYTHON_VERSION
+  - python -V
+  - export IMP_TMP_DIR=/tmp
+script:
+  - cd modules/foo
+  - mkdir build
+  - cd build
+  - cmake .. -DIMP_DIR=${CONDA_PREFIX}/lib/cmake/IMP
+  - make
+  - ./setup_environment.sh ../test/nosetests --with-coverage --cover-branches -e 'probabilistic' ../test/test_*.py test/*/*.py > /dev/null
+after_script:
+  - bash <(curl -s https://codecov.io/bash)
