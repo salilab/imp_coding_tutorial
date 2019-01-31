@@ -348,3 +348,47 @@ $ ./setup_environment.sh python ../imp/modules/foo/test/test_restraint.py
 
 You can also run all of your module's test cases using the `ctest` tool;
 see the [IMP manual](@ref installation_testing) for more details.
+
+# Automatic testing {#autotest}
+
+You can automate the building and testing of your module. This is very helpful
+because any bugs introduced during development may quickly be detected.
+Provided your module is in a public GitHub repository and is open source,
+you can use a number of free cloud services to do this:
+
+ - [Travis](https://travis-ci.org) will build and test your module in a
+   virtual machine every time you `git push` to GitHub. If the module fails to
+   build, or a test fails, Travis will send you an email.
+ - [Codecov](https://codecov.io) will track the
+   [code coverage](https://en.wikipedia.org/wiki/Code_coverage), i.e. which
+   lines of your Python or C++ code were executed when the tests were run.
+   This is a helpful tool for showing where extra tests are needed (to
+   exercise the missing lines of code, which might contain bugs).
+
+If you are using a public GitHub repository in the
+[Sali Lab organization](https://github.com/salilab/) please speak to a Sali
+Lab sysadmin to set up automatic testing of your module. Otherwise, you will
+need to sign up for Travis and Codecov accounts, and add your repository to
+each one. Then create a suitable `.travis.yml` in the top directory of your
+repository and a `tools/setup_travis.sh` script. See the
+[.travis.yml](https://github.com/salilab/pmi/blob/develop/.travis.yml) and
+[setup_travis.sh](https://github.com/salilab/pmi/blob/develop/tools/setup_travis.sh)
+from the IMP.pmi repository for templates. These two files instruct Travis to:
+
+1. Set up an environment on a virtual machine in the cloud in which to build
+   your module (they install
+   [Anaconda Python](https://www.anaconda.com/distribution/), the latest
+   nightly build of %IMP, and support packages such as a C++ compiler).
+2. Build your module using `cmake` and `make`.
+3. Run the test cases using the [nose](https://nose.readthedocs.io/en/latest/)
+   Python testing system.
+4. Collect coverage information for both C++ and Python code using special
+   `cmake` and `nosetests` command line options respectively, and upload it
+   to Codecov.
+
+The entire procedure is duplicated for multiple Python versions (both Python
+2 and Python 3).
+
+For example, this tutorial is itself tested in this fashion.
+See [the latest Travis results](https://travis-ci.org/salilab/imp_coding_tutorial)
+and the [the latest code coverage reports](https://codecov.io/gh/salilab/imp_coding_tutorial).
