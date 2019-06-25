@@ -4,10 +4,13 @@ dist: xenial
 python:
   - 2.7
   - 3.7
+env:
+  - IMP_BRANCH=develop
+  - IMP_BRANCH=master
 cache:
   pip: true
 install:
-  - source support/setup_travis.sh $HOME/miniconda $TRAVIS_PYTHON_VERSION
+  - source support/setup_travis.sh $HOME/miniconda $IMP_BRANCH $TRAVIS_PYTHON_VERSION
   - python -V
   - export IMP_TMP_DIR=/tmp
 script:

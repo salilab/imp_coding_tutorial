@@ -2,15 +2,22 @@
 
 # Set up an environment to run tests under Travis CI (see ../.travis.yml)
 
-if [ $# -ne 2 ]; then
-  echo "Usage: $0 conda_dir python_version"
+if [ $# -ne 3 ]; then
+  echo "Usage: $0 conda_dir imp_branch python_version"
   exit 1
 fi
 
 cur_dir=$(pwd)
 conda_dir=$1
-python_version=$2
+imp_branch=$2
+python_version=$3
 temp_dir=$(mktemp -d)
+
+if [ ${imp_branch} = "develop" ]; then
+  IMP_CONDA="imp-nightly"
+else
+  IMP_CONDA="imp"
+fi
 
 cd ${temp_dir}
 
@@ -27,7 +34,7 @@ fi
 bash miniconda.sh -b -p ${conda_dir}
 export PATH=${conda_dir}/bin:$PATH
 conda update --yes -q conda
-conda create --yes -q -n python${python_version} -c salilab python=${python_version} pip nose imp-nightly gxx_linux-64 eigen swig cmake
+conda create --yes -q -n python${python_version} -c salilab python=${python_version} pip nose ${IMP_CONDA} gxx_linux-64 eigen swig cmake
 source activate python${python_version}
 pip install coverage
 
