@@ -1,5 +1,5 @@
-[![Build Status](https://github.com/salilab/imp_coding_tutorial/workflows/build/badge.svg?branch=master)](https://github.com/salilab/imp_coding_tutorial/actions?query=workflow%3Abuild)
-[![codecov](https://codecov.io/gh/salilab/imp_coding_tutorial/branch/master/graph/badge.svg)](https://codecov.io/gh/salilab/imp_coding_tutorial)
+[![Build Status](https://github.com/salilab/imp_coding_tutorial/workflows/build/badge.svg?branch=main)](https://github.com/salilab/imp_coding_tutorial/actions?query=workflow%3Abuild)
+[![codecov](https://codecov.io/gh/salilab/imp_coding_tutorial/branch/main/graph/badge.svg)](https://codecov.io/gh/salilab/imp_coding_tutorial)
 
 This tutorial covers creating a new [IMP](https://integrativemodeling.org/)
 module and writing a new restraint in C++.
