@@ -1,3 +1,4 @@
 title: Introduction to writing IMP code
+depends: [imp_tutorial]
 description: >
     This covers creating a new IMP module, and writing a new restraint in C++.
