@@ -19,7 +19,7 @@ else
   IMP_CONDA="imp"
 fi
 
-conda create --yes -q -n python${python_version} -c salilab python=${python_version} pip ${IMP_CONDA} gxx_linux-64 eigen swig cmake
+conda create --yes -q -n python${python_version} -c salilab python=${python_version} pip ${IMP_CONDA} gxx_linux-64 eigen swig cmake numpy
 eval "$(conda shell.bash hook)"
 conda activate python${python_version}
 pip install pytest-cov coverage pytest-flake8
