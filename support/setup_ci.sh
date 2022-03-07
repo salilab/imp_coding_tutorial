@@ -22,4 +22,11 @@ fi
 conda create --yes -q -n python${python_version} -c salilab python=${python_version} pip ${IMP_CONDA} gxx_linux-64 eigen swig cmake numpy
 eval "$(conda shell.bash hook)"
 conda activate python${python_version}
-pip install pytest-cov coverage pytest-flake8
+
+if [ ${python_version} = "2.7" ]; then
+  # pytest-flake8 1.1.0 tries to import contextlib.redirect_stdout, which
+  # isn't present in Python 2
+  pip install pytest-cov coverage 'pytest-flake8<1.1'
+else
+  pip install pytest-cov coverage pytest-flake8
+fi
