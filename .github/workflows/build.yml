@@ -40,6 +40,4 @@ jobs:
         ${GCC/gcc/gcov} */*/*/*.gcno
     - uses: codecov/codecov-action@v3
       with:
-        gcov: true
-        verbose: true
         token: ${{ secrets.CODECOV_TOKEN }}
