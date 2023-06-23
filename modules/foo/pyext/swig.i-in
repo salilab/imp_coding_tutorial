@@ -4,6 +4,9 @@
 
 IMP_SWIG_OBJECT(IMP::foo, MyRestraint, MyRestraints);
 
+IMP_SWIG_OBJECT_SERIALIZE(IMP::foo, MyRestraint2, MyRestraint2s);
+
 //%include "IMP/example/ExampleRestraint.h"
 
 %include "IMP/foo/MyRestraint.h"
+%include "IMP/foo/MyRestraint2.h"
