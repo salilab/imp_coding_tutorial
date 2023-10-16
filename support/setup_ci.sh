@@ -16,14 +16,14 @@ conda config --add channels conda-forge
 if [ ${imp_branch} = "develop" ]; then
   IMP_CONDA="imp-nightly"
 else
-  if [ ${python_version} = "2.7" ]; then
-    IMP_CONDA="imp"
-  else
-    IMP_CONDA="imp libboost-devel"
-  fi
+  IMP_CONDA="imp"
 fi
-
-conda create --yes -q -n python${python_version} -c salilab python=${python_version} pip ${IMP_CONDA} gxx_linux-64 eigen cereal swig cmake numpy
+if [ ${python_version} = "2.7" ]; then
+  BOOST=""
+else
+  BOOST="libboost-devel"
+fi
+conda create --yes -q -n python${python_version} -c salilab python=${python_version} pip ${IMP_CONDA} ${BOOST} gxx_linux-64 eigen cereal swig cmake numpy
 eval "$(conda shell.bash hook)"
 conda activate python${python_version}
 
