@@ -15,8 +15,11 @@ conda config --remove channels defaults
 conda config --add channels conda-forge
 if [ ${imp_branch} = "develop" ]; then
   IMP_CONDA="imp-nightly"
+  swig="swig"
 else
   IMP_CONDA="imp"
+  # IMP stable does not yet work with SWIG 4.2
+  swig="swig<4.2"
 fi
 if [ ${python_version} = "2.7" ]; then
   BOOST=""
@@ -25,7 +28,7 @@ else
   BOOST="libboost-devel"
   pip="pip"
 fi
-conda create --yes -q -n python${python_version} -c salilab python=${python_version} ${pip} ${IMP_CONDA} ${BOOST} gxx_linux-64 eigen cereal swig cmake numpy
+conda create --yes -q -n python${python_version} -c salilab python=${python_version} ${pip} ${IMP_CONDA} ${BOOST} gxx_linux-64 eigen cereal ${swig} cmake numpy
 eval "$(conda shell.bash hook)"
 conda activate python${python_version}
 
