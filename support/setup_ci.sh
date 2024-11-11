@@ -11,7 +11,7 @@ imp_branch=$1
 python_version=$2
 
 # get conda-forge, not main, packages
-conda config --remove channels defaults
+conda config --remove channels defaults || :
 conda config --add channels conda-forge
 if [ ${imp_branch} = "develop" ]; then
   IMP_CONDA="imp-nightly"
