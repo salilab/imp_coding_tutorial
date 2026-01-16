@@ -4,6 +4,10 @@ import IMP.algebra
 import IMP.core
 import IMP.foo
 import pickle
+try:
+    import jax
+except ImportError:
+    jax = None
 
 
 class Tests(IMP.test.TestCase):
@@ -57,6 +61,24 @@ class Tests(IMP.test.TestCase):
         dump = pickle.dumps(sf)
         newsf = pickle.loads(dump)
         self.assertAlmostEqual(newsf.evaluate(False), 45.0, delta=1e-3)
+
+    @IMP.test.skipIf(jax is None or IMP.__version__ == '2.23.0',
+                     'No JAX support')
+    def test_my_restraint_jax(self):
+        """Test scoring of MyRestraint2 using JAX"""
+        m = IMP.Model()
+        p = m.add_particle("p")
+        d = IMP.core.XYZ.setup_particle(m, p, IMP.algebra.Vector3D(1,2,3))
+        r = IMP.foo.MyRestraint2(m, p, 10.)
+        ji = r._get_jax()
+        jm = ji.get_model_state()
+        score = jax.jit(ji.score_func)
+        self.assertAlmostEqual(score(jm), 45.0, delta=1e-4)
+        deriv = jax.jit(jax.grad(ji.score_func))
+        d = deriv(jm)['xyz']
+        self.assertLess(IMP.algebra.get_distance(d[0],
+                                                 IMP.algebra.Vector3D(0,0,30)),
+                        1e-4)
 
 
 if __name__ == '__main__':
