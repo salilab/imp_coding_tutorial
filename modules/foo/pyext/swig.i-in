@@ -10,3 +10,19 @@ IMP_SWIG_OBJECT_SERIALIZE(IMP::foo, MyRestraint2, MyRestraint2s);
 
 %include "IMP/foo/MyRestraint.h"
 %include "IMP/foo/MyRestraint2.h"
+
+// We can add extra methods to our MyRestraint2 Python class using
+// the %extend and %pythoncode directives. Here we add a new _get_jax()
+// method which adds support for evaluation using JAX:
+%extend IMP::foo::MyRestraint2 {
+  %pythoncode %{
+    def _get_jax(self):
+        import functools
+        def jax_restraint(X, k, pi):
+            xyz = X['xyz'][pi]
+            return 0.5 * k * xyz[2] * xyz[2]
+        f = functools.partial(jax_restraint, k=self.get_force_constant(),
+                              pi=self.get_index())
+        return self._wrap_jax(f)
+  %}
+}
