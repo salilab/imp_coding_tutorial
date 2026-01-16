@@ -15,6 +15,10 @@ public:
   MyRestraint2(Model *m, ParticleIndex p, double k);
   void do_add_score_and_derivatives(ScoreAccumulator sa) const override;
   ModelObjectsTemp do_get_inputs() const override;
+
+  ParticleIndex get_index() const { return p_; }
+  double get_force_constant() const { return k_; }
+
   IMP_OBJECT_METHODS(MyRestraint2);
 
   // RMF output support

@@ -11,6 +11,8 @@ class Tests(IMP.test.TestCase):
         p = m.add_particle("p")
         d = IMP.core.XYZ.setup_particle(m, p, IMP.algebra.Vector3D(1,2,3))
         r = IMP.foo.MyRestraint(m, p, 10.)
+        self.assertEqual(r.get_index(), p)
+        self.assertAlmostEqual(r.get_force_constant(), 10.0, delta=1e-4)
         self.assertAlmostEqual(r.evaluate(True), 45.0, delta=1e-4)
         self.assertLess(IMP.algebra.get_distance(d.get_derivatives(),
                                                  IMP.algebra.Vector3D(0,0,30)),
