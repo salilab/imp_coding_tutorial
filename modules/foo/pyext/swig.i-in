@@ -18,8 +18,8 @@ IMP_SWIG_OBJECT_SERIALIZE(IMP::foo, MyRestraint2, MyRestraint2s);
   %pythoncode %{
     def _get_jax(self):
         import functools
-        def jax_restraint(X, k, pi):
-            xyz = X['xyz'][pi]
+        def jax_restraint(jm, k, pi):
+            xyz = jm['xyz'][pi]
             return 0.5 * k * xyz[2] * xyz[2]
         f = functools.partial(jax_restraint, k=self.get_force_constant(),
                               pi=self.get_index())
