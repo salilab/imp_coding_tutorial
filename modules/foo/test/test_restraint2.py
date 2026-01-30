@@ -71,7 +71,10 @@ class Tests(IMP.test.TestCase):
         d = IMP.core.XYZ.setup_particle(m, p, IMP.algebra.Vector3D(1,2,3))
         r = IMP.foo.MyRestraint2(m, p, 10.)
         ji = r._get_jax()
-        jm = ji.get_model_state()
+        if hasattr(ji, 'get_jax_model'):
+            jm = ji.get_jax_model()
+        else:
+            jm = ji.get_model_state()
         score = jax.jit(ji.score_func)
         self.assertAlmostEqual(score(jm), 45.0, delta=1e-4)
         deriv = jax.jit(jax.grad(ji.score_func))
