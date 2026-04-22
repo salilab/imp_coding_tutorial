@@ -1,4 +1,4 @@
-[![Build Status](https://github.com/salilab/imp_coding_tutorial/workflows/build/badge.svg?branch=main)](https://github.com/salilab/imp_coding_tutorial/actions?query=workflow%3Abuild)
+[![Build Status](https://github.com/salilab/imp_coding_tutorial/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/salilab/imp_coding_tutorial/actions/workflows/build.yml)
 [![codecov](https://codecov.io/gh/salilab/imp_coding_tutorial/branch/main/graph/badge.svg)](https://codecov.io/gh/salilab/imp_coding_tutorial)
 
 This tutorial covers creating a new [IMP](https://integrativemodeling.org/)
