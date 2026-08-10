@@ -62,8 +62,7 @@ class Tests(IMP.test.TestCase):
         newsf = pickle.loads(dump)
         self.assertAlmostEqual(newsf.evaluate(False), 45.0, delta=1e-3)
 
-    @IMP.test.skipIf(jax is None or IMP.__version__ == '2.23.0',
-                     'No JAX support')
+    @IMP.test.skipIf(jax is None, 'No JAX support')
     def test_my_restraint_jax(self):
         """Test scoring of MyRestraint2 using JAX"""
         m = IMP.Model()
