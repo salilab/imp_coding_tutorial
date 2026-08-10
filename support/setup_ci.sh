@@ -15,10 +15,12 @@ conda config --remove channels defaults || :
 conda config --add channels conda-forge
 if [ ${imp_branch} = "develop" ]; then
   IMP_CONDA="imp-nightly"
+  JAX="jax"
 else
   IMP_CONDA="imp"
+  JAX=""
 fi
-conda create --yes -q -n python${python_version} -c salilab python=${python_version} pip ${IMP_CONDA} libboost-devel gxx_linux-64 eigen cereal swig cmake numpy
+conda create --yes -q -n python${python_version} -c salilab python=${python_version} pip ${IMP_CONDA} libboost-devel gxx_linux-64 eigen cereal swig cmake numpy ${JAX}
 eval "$(conda shell.bash hook)"
 conda activate python${python_version}
 
