@@ -35,6 +35,7 @@ jobs:
         support/setup_ci.sh ${{ matrix.imp-branch }}
     - name: Test
       run: |
+        eval "$(conda shell.bash hook)"
         conda activate test
         # Use same C/C++ compiler as conda
         source ${CONDA_PREFIX}/etc/conda/activate.d/activate-gcc_linux-64.sh
