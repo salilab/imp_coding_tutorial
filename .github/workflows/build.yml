@@ -27,7 +27,7 @@ jobs:
       uses: conda-incubator/setup-miniconda@v4
       with:
         miniforge-version: latest
-        channels: conda-forge
+        channels: conda-forge, salilab
         conda-remove-defaults: "true"
         python-version: ${{ matrix.python-version }}
     - name: Install packages
