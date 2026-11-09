@@ -16,6 +16,7 @@ else
   IMP_CONDA="imp"
   JAX=""
 fi
-conda install -n test --yes -q pip ${IMP_CONDA} libboost-devel gxx_linux-64 eigen cereal swig cmake numpy ${JAX}
+conda activate test
+conda install --yes -q pip ${IMP_CONDA} libboost-devel gxx_linux-64 eigen cereal swig cmake numpy ${JAX}
 
 pip install pytest-cov coverage
