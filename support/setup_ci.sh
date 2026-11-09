@@ -16,6 +16,7 @@ else
   IMP_CONDA="imp"
   JAX=""
 fi
+eval "$(conda shell.bash hook)"
 conda activate test
 conda install --yes -q pip ${IMP_CONDA} libboost-devel gxx_linux-64 eigen cereal swig cmake numpy ${JAX}
 
